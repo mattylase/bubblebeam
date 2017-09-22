@@ -1,0 +1,1 @@
+# Bubblebeam is a semantic way to manage events in Unity

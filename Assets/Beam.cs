@@ -18,13 +18,13 @@ namespace Bubblebeam
         {
             switch (bubble.updateLoop)
             {
-                case Loop.UPDATE:
+                case Loop.Update:
                     instance.gameObject.AddComponent<BubbleUpdateAgent>().InitializeWithBubble(bubble);
                     break;
-                case Loop.FIXED_UPDATE:
+                case Loop.Fixed_Update:
                     instance.gameObject.AddComponent<BubbleFixedUpdateAgent>().InitializeWithBubble(bubble);
                     break;
-                case Loop.LATE_UPDATE:
+                case Loop.Late_Update:
                     instance.gameObject.AddComponent<BubbleLateUpdateAgent>().InitializeWithBubble(bubble);
                     break;
             }

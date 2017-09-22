@@ -84,13 +84,13 @@ namespace Bubblebeam
             {
                 switch (bubble.keyAction)
                 {
-                    case KeyAction.KEY_DOWN:
+                    case KeyAction.Key_Down:
                         checks += KeyDownCheck;
                         break;
-                    case KeyAction.KEY_UP:
+                    case KeyAction.Key_Up:
                         checks += KeyUpCheck;
                         break;
-                    case KeyAction.KEY_HELD:
+                    case KeyAction.Key_Held:
                         checks += KeyHeldCheck;
                         break;
                 }
@@ -100,26 +100,24 @@ namespace Bubblebeam
             {
                 switch (bubble.buttonAction)
                 {
-                    case ButtonAction.BUTTON_DOWN:
+                    case ButtonAction.Button_Down:
                         checks += ButtonDownCheck;
                         break;
-                    case ButtonAction.BUTTON_UP:
+                    case ButtonAction.Button_Up:
                         checks += ButtonUpCheck;
                         break;
-                    case ButtonAction.BUTTON_HELD:
+                    case ButtonAction.Button_Held:
                         checks += ButtonHeldCheck;
                         break;
                 }
             }
 
-            if (bubble.customBubble != null) {
+            if (bubble.customBubble != null) {                
                 checks += CustomBubbleCheck;
             }
-            
+
             enabled = true;
         }
     }
-
-
 
 }

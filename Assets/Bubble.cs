@@ -5,23 +5,26 @@ namespace Bubblebeam
 {
     public enum Loop
     {
-        UPDATE,
-        FIXED_UPDATE,
-        LATE_UPDATE
+        None,
+        Update,
+        Fixed_Update,
+        Late_Update
     }
 
     public enum KeyAction
     {
-        KEY_DOWN,
-        KEY_UP,
-        KEY_HELD
+        None,
+        Key_Down,
+        Key_Up,
+        Key_Held
     }
 
     public enum ButtonAction
     {
-        BUTTON_DOWN,
-        BUTTON_UP,
-        BUTTON_HELD
+        None,
+        Button_Down,
+        Button_Up,
+        Button_Held
     }
 
     public class Bubble
@@ -40,7 +43,7 @@ namespace Bubblebeam
         public CustomBubble customBubble;
 
         public delegate void OnPop();
-        public event OnPop onPop;    
+        public event OnPop onPop;
 
         public void PopBubble()
         {
@@ -88,6 +91,42 @@ namespace Bubblebeam
 
             public Bubble Inflate()
             {
+                if (_bubble.updateLoop == Loop.None)
+                {
+                    throw new NotSupportedException("A Loop must be specified for a Bubble to properly Inflate");
+                }
+
+                var keyUnset = false;
+                if (_bubble.keyCode != KeyCode.None)
+                {
+                    if (_bubble.keyAction == KeyAction.None)
+                    {
+                        throw new NotSupportedException("A KeyAction must be specified when a KeyCode is to properly Inflate");
+                    }
+                }
+                else
+                {
+                    keyUnset = true;
+                }
+
+                var buttonUnset = false;
+                if (_bubble.buttonName != null)
+                {
+                    if (_bubble.buttonAction == ButtonAction.None)
+                    {
+                        throw new NotSupportedException("A ButtonAction must be specified when a button name is to properly Inflate");
+                    }
+                }
+                else
+                {
+                    buttonUnset = true;
+                }
+
+                if (buttonUnset && keyUnset && _bubble.customBubble == null)
+                {
+                    throw new NotSupportedException("A key, button, or custom event need to be set to properly Inflate");
+                }
+
                 return _bubble;
             }
         }
